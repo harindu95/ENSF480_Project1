@@ -44,7 +44,7 @@ public class Document implements Serializable{
 	public String toString() {
 		return String.format("ID: %s\n"
 				    + "Type: %s\n"
-				    + "Descirption: %s \n"
+				    + "Description: %s \n"
 				    + "Author: %s\n", id, type, description, author);
 	}
 }

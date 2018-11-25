@@ -1,7 +1,21 @@
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleUI {
+
+	public int nextInt(Scanner in) {
+		while (true) {
+			try {
+				int item = in.nextInt();
+				in.nextLine();
+				return item;
+			} catch (InputMismatchException e) {
+				in.nextLine();
+				System.out.println("Invalid input. Please enter a integer");
+			}
+		}
+	}
 
 	public void viewDocument(Scanner in, Operator o) {
 
@@ -97,8 +111,8 @@ public class ConsoleUI {
 			System.out.println("4.Update document");
 			System.out.println("5.Exit");
 
-			int option = in.nextInt();
-			in.nextLine();
+			int option = nextInt(in);
+
 			switch (option) {
 			case 1:
 				viewDocument(in, o);
@@ -150,8 +164,8 @@ public class ConsoleUI {
 		System.out.println("2. Registered buyer login");
 		System.out.println("3. Just continue as a normal buyer");
 
-		int option = in.nextInt();
-		in.nextLine();
+		int option = nextInt(in);
+
 		switch (option) {
 		case 1:
 			Operator o = operatorLogin(in);
@@ -186,8 +200,8 @@ public class ConsoleUI {
 			System.out.println("2. Register");
 			System.out.println("3. Proceed to Payment");
 			System.out.println("4. Exit");
-			int option = in.nextInt();
-			in.nextLine();
+			int option = nextInt(in);
+
 			switch (option) {
 			case 1:
 				seachItem(in, b);
@@ -252,9 +266,9 @@ public class ConsoleUI {
 		String yOrn = in.nextLine().trim().toLowerCase();
 		if (yOrn.equals("y")) {
 			System.out.print("Item number: ");
-			int item = in.nextInt();
+			int item = nextInt(in);
 			System.out.print("Number of items: ");
-			int numItems = in.nextInt();
+			int numItems = nextInt(in);
 			b.addToCart(list.get(item - 1), numItems);
 		} else {
 
@@ -291,22 +305,27 @@ public class ConsoleUI {
 
 			System.out.println("5. Proceed to Payment");
 			System.out.println("7. Exit");
-			int option = in.nextInt();
-			in.nextLine();
+			int option = nextInt(in);
+
 			switch (option) {
 			case 1:
 				seachItem(in, b);
 				break;
 			case 2:
-				showPromotions(in, b);
+				if (b.isSubscribed())
+					showPromotions(in, b);
 				break;
 			case 3:
-				b.unsubscribe();
-				System.out.println("You are unsubsribed from promotions.");
+				if (b.isSubscribed()) {
+					b.unsubscribe();
+					System.out.println("You are unsubsribed from promotions.");
+				}
 				break;
 			case 4:
-				b.subsribe();
-				System.out.println("You have subscribed into our promotions.");
+				if (!b.isSubscribed()) {
+					b.subsribe();
+					System.out.println("You have subscribed into our promotions.");
+				}
 				break;
 			case 5:
 				handlePayment(in, b);
@@ -347,9 +366,9 @@ public class ConsoleUI {
 		String yOrn = in.nextLine().trim().toLowerCase();
 		if (yOrn.equals("y")) {
 			System.out.print("Item number: ");
-			int item = in.nextInt();
+			int item = nextInt(in);
 			System.out.print("Number of items: ");
-			int numItems = in.nextInt();
+			int numItems = nextInt(in);
 			b.addToCart(list.get(item - 1), numItems);
 		} else {
 

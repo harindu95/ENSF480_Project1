@@ -27,31 +27,27 @@ public class RegisteredBuyer extends Buyer implements User, Serializable {
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
+
 		return username;
 	}
 
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
+
 		return password;
 	}
 
 	public List<Document> getPromotions() {
-		// TODO Auto-generated method stub
-		List<Document> promotions = new ArrayList<>();
+
 		if (!subscribed)
 			return null;
+		else
+			return Inventory.getInstance().getPromotions();
 
-		promotions.add(new Document("567", "Fiction", "Artemis Fowl", "mr.unknown"));
-		promotions.add(new Document("568", "Fiction", "Artemis Fowl and Code", "mr.unknown"));
-		promotions.add(new Document("569", "Fiction", "Artemis Fowl and Lost Continent", "mr.unknown"));
-		promotions.add(new Document("570", "Fiction", "Artemis Fowl and Arctic Incident", "mr.unknown"));
-		return promotions;
 	}
 
 	public void subsribe() {
-		// TODO Auto-generated method stub
+
 		subscribed = true;
 	}
 

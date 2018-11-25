@@ -2,8 +2,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.NotSerializableException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -69,6 +67,17 @@ public class Inventory {
 			// do something
 			e.printStackTrace();
 		}
+	}
+	
+	public List<Document> getPromotions() {
+		// TODO Auto-generated method stub
+		List<Document> promotions = new ArrayList<>();
+		
+		promotions.add(new Document("567", "Fiction", "Artemis Fowl", "mr.unknown"));
+		promotions.add(new Document("568", "Fiction", "Artemis Fowl and Code", "mr.unknown"));
+		promotions.add(new Document("569", "Fiction", "Artemis Fowl and Lost Continent", "mr.unknown"));
+		promotions.add(new Document("570", "Fiction", "Artemis Fowl and Arctic Incident", "mr.unknown"));
+		return promotions;
 	}
 
 	public static Object readFromFile(File path) {

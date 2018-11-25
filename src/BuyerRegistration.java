@@ -25,7 +25,6 @@ public class BuyerRegistration implements Serializable{
 			buyers = (HashMap<String, RegisteredBuyer>)data;
 	}
 	
-	
 	public static BuyerRegistration getInstance() {
 		if(instance == null)
 			instance = new BuyerRegistration();
