@@ -19,9 +19,9 @@ public class Inventory {
 
 	private Inventory() {
 		documents = new HashMap<>();
-		Object data =  readFromFile(new File("documents.db"));
-		if(data != null) {
-			documents = (HashMap<String, Document>)data;
+		Object data = readFromFile(new File("documents.db"));
+		if (data != null) {
+			documents = (HashMap<String, Document>) data;
 		}
 	}
 
@@ -44,20 +44,20 @@ public class Inventory {
 		return instance;
 	}
 
-	public List<Document> search(String keyword){
+	public List<Document> search(String keyword) {
 		ArrayList<Document> list = new ArrayList<>();
-		Iterator<Document > it = documents.values().iterator();
-		for(;it.hasNext();) {
+		Iterator<Document> it = documents.values().iterator();
+		for (; it.hasNext();) {
 			Document d = it.next();
 			String txt = d.getAuthor() + d.getID() + d.getDescription() + d.getType();
 			txt = txt.toLowerCase().trim();
 			keyword = keyword.toLowerCase();
-			if(txt.contains(keyword))
+			if (txt.contains(keyword))
 				list.add(d);
 		}
 		return list;
 	}
-	
+
 	public void save() {
 		writeToFile(new File("documents.db"));
 	}
@@ -68,7 +68,7 @@ public class Inventory {
 		} catch (Exception e) {
 			// do something
 			e.printStackTrace();
-		} 
+		}
 	}
 
 	public static Object readFromFile(File path) {
@@ -77,9 +77,11 @@ public class Inventory {
 		try (ObjectInputStream inFile = new ObjectInputStream(new FileInputStream(path))) {
 			data = inFile.readObject();
 			return data;
+		} catch (FileNotFoundException f) {
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		
+
 		}
 		return data;
 	}

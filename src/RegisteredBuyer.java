@@ -44,9 +44,9 @@ public class RegisteredBuyer extends Buyer implements User, Serializable {
 			return null;
 
 		promotions.add(new Document("567", "Fiction", "Artemis Fowl", "mr.unknown"));
-		promotions.add(new Document("567", "Fiction", "Artemis Fowl and Code", "mr.unknown"));
-		promotions.add(new Document("567", "Fiction", "Artemis Fowl and Lost Continent", "mr.unknown"));
-		promotions.add(new Document("567", "Fiction", "Artemis Fowl and Arctic Incident", "mr.unknown"));
+		promotions.add(new Document("568", "Fiction", "Artemis Fowl and Code", "mr.unknown"));
+		promotions.add(new Document("569", "Fiction", "Artemis Fowl and Lost Continent", "mr.unknown"));
+		promotions.add(new Document("570", "Fiction", "Artemis Fowl and Arctic Incident", "mr.unknown"));
 		return promotions;
 	}
 
