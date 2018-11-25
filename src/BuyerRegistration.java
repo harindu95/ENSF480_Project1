@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -66,6 +67,8 @@ public class BuyerRegistration implements Serializable{
 		try (ObjectInputStream inFile = new ObjectInputStream(new FileInputStream(path))) {
 			data = inFile.readObject();
 			return data;
+		}catch(FileNotFoundException f) {
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		
