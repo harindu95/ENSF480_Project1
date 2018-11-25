@@ -282,9 +282,15 @@ public class ConsoleUI {
 
 			System.out.println("Select one of the options:");
 			System.out.println("1. Search for item");
-			System.out.println("2. View Promotions");
-			System.out.println("3. Proceed to Payment");
-			System.out.println("4. Exit");
+			if (b.isSubscribed()) {
+				System.out.println("2. View Promotions");
+				System.out.println("3. Unsubscribe");
+			} else {
+				System.out.println("4. Subscribe");
+			}
+
+			System.out.println("5. Proceed to Payment");
+			System.out.println("7. Exit");
 			int option = in.nextInt();
 			in.nextLine();
 			switch (option) {
@@ -295,11 +301,22 @@ public class ConsoleUI {
 				showPromotions(in, b);
 				break;
 			case 3:
-				handlePayment(in, b);
+				b.unsubscribe();
+				System.out.println("You are unsubsribed from promotions.");
 				break;
 			case 4:
-
+				b.subsribe();
+				System.out.println("You have subscribed into our promotions.");
+				break;
+			case 5:
+				handlePayment(in, b);
+				break;
+			case 7:
 				return;
+
+			default:
+
+				break;
 			}
 		}
 	}
@@ -309,6 +326,11 @@ public class ConsoleUI {
 
 		List<Document> list = b.getPromotions();
 		int i = 0;
+		if (!b.isSubscribed()) {
+			System.out.println("You have unsubscribed from promotions.");
+			return;
+		}
+
 		for (Document d : list) {
 
 			System.out.println((i + 1) + ". " + d.toString());
